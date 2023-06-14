@@ -1,0 +1,44 @@
+Front-end:
+    We'll have three total pages.
+        *Landing page with username/password fields
+            should have:
+                remember me checkbox
+                forgot password option
+                "Don't have an account? sign up" option.
+                Show password toggle
+        *Sign up page that allows user to make new account.
+            should check if username / email in use upon submission.
+                if in use, give option to redirect to login page.
+                or give option to redirect to forgot password page.
+        *Have a forgot password page that helps user recover password.
+            Should have a username / email field. 
+            find in database and send instructions to username / email from database.
+            button to redirect to login.
+        *We should have a "sign in with google" button.
+
+Back-end:
+    *Database for storing user stuff
+        email / username, hashed & salted password
+        >> Sign in page:
+        *Sign in with Google
+            **how to put info into our own database?
+            if session:
+                pre fill user info in fields
+            if no session:
+                upon submission, look into db for username.
+                if no username matches, return error for that.
+                if password doesn't match, fill in error for that.
+                    we can add a guesses thing. if there are more than 5
+                    failed attempts, we lock the account for x amount of time, 30 mins maybe.
+            if login successful, we take user to dummy landing page.
+        >> Sign up page:
+        *Sign up with google
+            **how to put info into our own database?
+            we have the same email and password fields.
+            check if user is in database. if so, give the option to login or reset password.
+            if not, create the account (insert username and salted pass to database) and direct user to home page.
+        >> Forgot password page:
+            field for username. if username not in database, say account doesn't exist and redirect to sign up.
+            if username is in database, we 
+            
+    *How do we make use of sessions / cookies to keep users signed in?
