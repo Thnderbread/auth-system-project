@@ -2,7 +2,8 @@ const User = require('../model/User');
 const bcrypt = require('bcrypt');
 
 async function userLogin(req, res) {
-    const { email, password } = req.body;
+    const email = req.body.email;
+    const password = req.body.password;
     // compare entered email & password with email and pass in db
     // if we cannot find the user in db:
         // we tell user they aren't found. ask to re-enter 
