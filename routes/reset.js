@@ -1,6 +1,9 @@
 const express = require('express');
-const router = express.router();
+const router = express.Router();
 
 router.get('../views/reset', (req, res) => {
-    res.render('./reset', {'message': 'Waiting for user reset.'})
+    res.render('./reset')
+    res.end();
 })
+
+module.exports = router;

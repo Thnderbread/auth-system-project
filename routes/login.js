@@ -1,5 +1,12 @@
 const express = require('express');
-const router = express.router();
+const router = express.Router();
 const userLogin = require('../helpers/authHelper');
 
-router.post('/login', userLogin);
+router.route('/login')
+    .get((req, res) => {
+        res.render('./login');
+        res.end();
+    })
+    .post(userLogin);
+
+module.exports = router

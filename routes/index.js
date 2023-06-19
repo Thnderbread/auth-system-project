@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.router();
+const router = express.Router();
 
 router.get('/index', (req, res) => {
     res.render('./index', {"message": "Logged in!"})

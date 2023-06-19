@@ -1,5 +1,12 @@
 const express = require('express');
-const router = express.router();
-const registerUser = require('../helpers/registerHelper/')
+const router = express.Router();
+const registerUser = require('../helpers/registerHelper')
 
-router.post('/register', registerUser)
+router.route('/register')
+    .get((req, res) => {
+        res.render('./register')
+        res.end();
+    })
+    .post(registerUser)
+
+module.exports = router;
