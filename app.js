@@ -11,17 +11,18 @@ connectDB();
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true })); // parses url payloads
+app.use(express.json()); // parses json paylods
 
 // routes
-app.use('/index', require('./routes/index'));
+app.use('/', require('./routes/index'));
 app.use('/register', require('./routes/register'));
 app.use('/login', require('./routes/login'))
 app.use('/forgot', require('./routes/forgot'));
 
 mongoose.connection.once('open', () => {
     console.log('Connection to MongoDB successful.');
-    app.listen(port, () => console.log(`Appplication now listening on port ${port}.`));
+    app.listen(port, () => console.log(`Appplication now listening on http://localhost:${port}/.`));
 })
 
 
