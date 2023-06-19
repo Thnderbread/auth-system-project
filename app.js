@@ -2,8 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const connectDB = require('connection.js');
-const bcrypt = require('bcrypt');
+const connectDB = require('connection');
 const app = express();
 const port = 8080;
 
