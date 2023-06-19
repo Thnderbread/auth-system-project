@@ -42,3 +42,8 @@ Back-end:
             if username is in database, we 
             
     *How do we make use of sessions / cookies to keep users signed in?
+
+db user: 
+    id: int not null primary key
+    email: string not null 
+    password: string not null
