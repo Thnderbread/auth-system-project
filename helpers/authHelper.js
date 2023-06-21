@@ -27,8 +27,8 @@ async function userLogin(req, res) {
 
             if (data) {
                 // log in
-                res.status(200).json({ "message": "Login successful." });
-                return res.redirect('../views/index')
+                // res.status(200).json({ "message": "Login successful." });
+                return res.redirect(200, '../views/index')
             } else {
                 return res.status(401).json({ "message": "Invalid password." });
             }

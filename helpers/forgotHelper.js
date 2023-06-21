@@ -11,8 +11,8 @@ async function forgotPassword(req, res) {
         return res.status(404).json({ "error": "User not found. Check credentials or create an account." })
     }
 
-    res.status(200).json({ "message": "Found user." }); // send to login?
-    return res.redirect('../views/reset')
+    // res.status(200).json({ "message": "Found user." }); // send to login?
+    return res.redirect(200, '../views/reset')
 }
 
 module.exports = forgotPassword;

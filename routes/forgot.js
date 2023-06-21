@@ -4,7 +4,7 @@ const forgotPassword = require('../helpers/forgotHelper');
 
 router.route('/')
     .get((req, res) => {
-        res.render('.forgot')
+        res.render('./forgot')
         res.end();
     })
     .post(forgotPassword);

@@ -19,6 +19,7 @@ app.use('/', require('./routes/index'));
 app.use('/register', require('./routes/register'));
 app.use('/login', require('./routes/login'))
 app.use('/forgot', require('./routes/forgot'));
+app.use('/reset', require('./routes/reset'));
 
 mongoose.connection.once('open', () => {
     console.log('Connection to MongoDB successful.');
