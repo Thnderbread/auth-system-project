@@ -1,5 +1,7 @@
+require('dotenv').config()
 const User = require('../model/User');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 async function userLogin(req, res) {
     const email = req.body.email;
@@ -19,16 +21,35 @@ async function userLogin(req, res) {
     try {
         const user = await User.findOne({ email: email });
         if (!user) {
-            return res.status(404).json({ 'error': 'User not found. Check credentials or create a new account.' });
+            return res.status(401).json({ 'error': 'User not found. Check credentials or create a new account.' });
         } 
 
-        bcrypt.compare(password, user.password, (error, data) => {
+        bcrypt.compare(password, user.password, async (error, data) => {
             if (error) throw error
 
             if (data) {
                 // log in
                 // res.status(200).json({ "message": "Login successful." });
-                return res.redirect(200, '../views/index')
+                const accessToken = jwt.sign(
+                    { "email": user.email },
+                    process.env.ACCESS_TOKEN_SECRET,
+                    { expiresIn: '30s' }
+                );
+                const refreshToken = jwt.sign(
+                    { "email": user.email },
+                    process.env.REFRESH_TOKEN_SECRET,
+                    { expiresIn: '1d' }
+                );
+
+                user.refreshToken = refreshToken; // store refresh token in user database.
+                await user.save();
+                console.log(user.refreshToken);
+
+                // store refresh token and give access token
+                res.cookie('jwt', refreshToken, { httpOnly: true, sameSite: 'None', secure: true, maxAge: 24 * 60 * 60 * 1000 });
+                res.json({ accessToken });
+                // sessionStorage.setItem('accessToken', accessToken); // store access token in browser memory
+            
             } else {
                 return res.status(401).json({ "message": "Invalid password." });
             }
@@ -36,7 +57,7 @@ async function userLogin(req, res) {
 
     } catch (error) {
         console.error(error);
-        return res.status(404).json({'error': error.message});
+        return res.status(500).json({'error': error.message});
     }
 }
 
