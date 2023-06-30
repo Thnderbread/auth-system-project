@@ -1,19 +1,26 @@
 require('dotenv').config();
 const express = require('express');
-const bodyParser = require('body-parser');
+//const bodyParser = require('body-parser');
 const session = require('express-session')
 const mongoose = require('mongoose');
-const connectDB = require('./connection');
+const connectDB = require('./config/connection');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
+const corsOptions = require('./config/corsOptions');
+const credentials = require('./middleware/credentials');
+const verifyJWT = require('./middleware/verifyJWT');
 const app = express();
 const port = 8080;
 
-// Connect to MongoDB
+// Connect to MongoDBk
 connectDB();
+
+app.use(credentials);
+app.use(cors(corsOptions));
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
-app.use(bodyParser.urlencoded({ extended: true })); // parses url payloads
+app.use(express.urlencoded({ extended: true })); // parses url payloads
 app.use(cookieParser()); // parses cookies
 app.use(express.json()); // parses json paylods
 app.use(session({
@@ -21,7 +28,6 @@ app.use(session({
     resave: false,  //> 
     saveUninitialized: false //>>
 }));
-``
 //> determines if the session should be saved (back to the session store) even if it wasn't modified. false improves performance by preventing unnecessary writes.
 
 //>> determines whether unitialized sessions (if i never use a req.session item) should be saved to the session store. 
@@ -35,12 +41,13 @@ app.use('/reset', require('./routes/reset'));
 app.use('/refresh', require('./routes/refresh'));
 
 // since order matters, and we verify jwts before access is allowed to this route, we put it last.
+app.use(verifyJWT);
 app.use('/', require('./routes/index'));
 
 
 mongoose.connection.once('open', () => {
     console.log('Connection to MongoDB successful.');
-    app.listen(port, () => console.log(`Appplication now listening on http://localhost:${port}/.`));
+    app.listen(port, () => console.log(`Application now listening on http://localhost:${port}/.`));
 })
 
 

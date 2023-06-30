@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const router = express.Router(); 
 const forgotPassword = require('../helpers/forgotHelper');
 
 router.route('/')

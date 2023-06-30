@@ -5,8 +5,49 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forgot Password</title>
+    <script>
+        async function forgotPassword(form) {
+            event.preventDefault(); //**
+            const email = document.getElementById('userEmail').value;
+
+            try {
+                const response = await fetch('/forgot', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    credentials: "include",
+                   body: JSON.stringify({ email })
+                });
+                if (!response.ok) {
+                    throw new Error(`${response.status} ${response.statusText}`);
+                }
+                window.location.replace('./reset');
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    </script>
 </head>
 <body>
-    <p>Forgot password page</p>
+    <p>Forgot password page type</p>
+    <div>
+        <form onsubmit='forgotPassword(this);' method="post">
+            <center><h1>Forgot Password</h1></center>
+            <label>Email</label>
+            <input type="email" name="email" id="userEmail" autofocus required/>
+            <input type="submit" id="submit" value="Submit"/>
+        </form>
+    </div>
 </body>
 </html>
+
+<!-- 
+    forgot password
+    should be a page with a form for 
+    entering email and submitting it.
+ -->
+
+ <!-- **\\
+    on submission, forms usually auto reload a page. this interferes with async operations that 
+    -return information that i want to do something conditional with, eg if i want to render a page
+    based on the responste. 
+  -->
