@@ -2,11 +2,11 @@
   "name": "authsystemproject",
   "version": "1.0.0",
   "description": "A sample login / signup page and system for a website.",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon app.js",
-    "start": "node app.js"
+    "dev": "nodemon server.js",
+    "start": "node server.js"
   },
   "author": "Thnderbread",
   "license": "ISC",
