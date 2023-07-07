@@ -1,0 +1,107 @@
+h1 {
+    text-align: center;
+    color: white;
+}
+
+body {
+    background-color: rgb(34, 31, 31);
+}
+
+form {
+    margin:  0 auto;
+    width: 50%;
+    padding: 10px
+}
+
+label {
+    color: white;
+    font-size: larger;
+}
+
+p {
+    text-align: center;
+    color: white;
+    font-size: 24px;
+    word-wrap: break-word;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+
+}
+
+a:link {
+    color: rgb(132, 127, 236);
+}
+
+a:hover {
+    color: cyan;
+}
+
+a:visited {
+    border: darkred;
+}
+
+.center {
+    /* border: 5px solid; */
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%);
+    padding: 10px;
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px; 
+    margin: 8px 0 12px;
+    box-sizing: border-box;
+    background-color: black;
+    color: whitesmoke;
+    font-size: larger;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+    border: 1px solid lightskyblue;
+    transition: 0.2s;
+    outline: none;
+}
+
+input[type=submit] {
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+    padding: 8px 10px; 
+    background-color: rgb(7, 7, 7);
+    font-size: large;
+    color: white;
+    border-color: whitesmoke;
+    border-width: .5px;
+}
+
+input[type=submit]:hover {
+    cursor: pointer;
+    background-color: rgb(11, 106, 27);
+    transition: 0.2s;
+}
+
+input:invalid {
+    border: 2px solid rgb(138, 20, 20);
+    transition: 0.2s;
+}
+
+/* input:invalid + span {
+    color: red;
+    font-weight: bold;
+} */
