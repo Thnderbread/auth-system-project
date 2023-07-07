@@ -56,7 +56,7 @@ async function userLogin(req, res) {
         })
 
     } catch (error) {
-        console.error(error);
+        console.error(error); // error.stack prints more detailed information
         return res.status(500).json({'error': error.message});
     }
 }

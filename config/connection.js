@@ -7,7 +7,7 @@ async function connectDB() {
             useNewUrlParser: true
        });
     } catch (error) {
-        console.error(error);
+        console.error(error); // error.stack prints more detailed information
     }
 }
 

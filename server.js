@@ -39,6 +39,9 @@ app.use('/login', require('./routes/login'));
 app.use('/forgot', require('./routes/forgot'));
 app.use('/reset', require('./routes/reset'));
 app.use('/refresh', require('./routes/refresh'));
+app.use((req, res, next) => {
+    res.status(404).render('404');
+})
 
 // since order matters, and we verify jwts before access is allowed to this route, we put it last.
 app.use(verifyJWT);

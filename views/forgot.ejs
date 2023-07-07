@@ -9,9 +9,9 @@
         async function forgotPassword(form) {
             event.preventDefault(); //**
             const email = document.getElementById('userEmail').value;
-
+        
             try {
-                const response = await fetch('/forgot', {
+                const response = await fetch('./forgot', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     credentials: "include",
@@ -19,21 +19,23 @@
                 });
                 if (!response.ok) {
                     throw new Error(`${response.status} ${response.statusText}`);
+                    window.location.replace('./404');
                 }
                 window.location.replace('./reset');
             } catch (error) {
-                console.error(error);
+                console.error(error); // error.stack prints more detailed information
+                window.location.replace('./404');
             }
         }
     </script>
+    <link rel="stylesheet" href=".styles.css">
 </head>
 <body>
-    <p>Forgot password page type</p>
-    <div>
+    <div class="center">
         <form onsubmit='forgotPassword(this);' method="post">
             <center><h1>Forgot Password</h1></center>
             <label>Email</label>
-            <input type="email" name="email" id="userEmail" autofocus required/>
+            <input type="text" name="email" id="userEmail" autofocus required/>
             <input type="submit" id="submit" value="Submit"/>
         </form>
     </div>
@@ -49,5 +51,5 @@
  <!-- **\\
     on submission, forms usually auto reload a page. this interferes with async operations that 
     -return information that i want to do something conditional with, eg if i want to render a page
-    based on the responste. 
+    based on the response. preventDefault stops the page from reloading automatically.
   -->

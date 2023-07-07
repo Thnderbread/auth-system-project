@@ -10,7 +10,7 @@ async function forgotPassword(req, res) {
     }
 
     // redirect syntax: res.redirect('./login');
-    res.status(200).json({ "message": "Found user.", "email": user.email }); // send to login?
+    res.status(200).json({ "message": "Found user." }); // send to login?
 }
 
 module.exports = forgotPassword;

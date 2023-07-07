@@ -25,7 +25,7 @@ async function registerUser(req, res) {
         // redirect user to homepage?
 
     } catch (error) {
-        console.error(error);
+        console.error(error); // error.stack prints more detailed information
         res.status(500).json({ "error": error.message });
     }
 
