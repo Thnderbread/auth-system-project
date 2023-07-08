@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
     <link rel="stylesheet" href="./styles.css">
-    <script>
+    <!-- <script>
         // function that refreshes access token before it expires.
         // check for access token first? or automatically refresh?
-        setInterval(async function checkAccessToken() {
+        setInterval(async function checkRefreshToken() {
             // if access Token
+            const accessToken = sessionStorage.getItem('accessToken')
             if (accessToken) {
                 ;
             } else {
@@ -25,18 +26,18 @@
                         throw new Error(`${response.status} ${response.statusText}`)
                         window.location.replace('./404');
                     }
-                    const accessToken = await response.json().then(result => result.accessToken); 
+                    accessToken = await response.json().then(result => result.accessToken); 
                     // parse response and get and set access token
                 } catch (error) {
                     console.error(error); // error.stack prints more detailed information
                     window.location.replace('./404');
                 }
             };
-        }, 20_000)
-    </script>
+        }, 85_999_999)
+    </script> -->
 </head>
 <body>
     <p>If you made it here, everything works!</p>
-    <img src="../public/images/hooray.png" alt="HOORAY!">
+    <img src="./images/hooray.png" alt="HOORAY!">
 </body>
 </html>

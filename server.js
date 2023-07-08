@@ -34,6 +34,7 @@ app.use(session({
     //>> false is good for privacy & best practices. true is good for default or empty session data.
 
 // routes
+app.use('/', require('./routes/index'));
 app.use('/register', require('./routes/register'));
 app.use('/login', require('./routes/login'));
 app.use('/forgot', require('./routes/forgot'));
@@ -44,8 +45,8 @@ app.use((req, res, next) => {
 })
 
 // since order matters, and we verify jwts before access is allowed to this route, we put it last.
-app.use(verifyJWT);
-app.use('/', require('./routes/index'));
+// app.use(verifyJWT);
+
 
 
 mongoose.connection.once('open', () => {

@@ -8,14 +8,15 @@
     <script>
         async function register(form) {
             event.preventDefault(); //**
-            const email = document.getElementById('userEmail').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
         
             try {
-                const response = await fetch('./forgot', {
+                const response = await fetch('./register', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     credentials: 'include',
-                    body: JSON.stringify({ email })
+                    body: JSON.stringify({ email, password })
                 });
                 if (!response.ok) {
                     throw new Error(`${response.status} ${response.statusText}`);
@@ -35,7 +36,7 @@
         <h1>Sign Up</h1>
             <form onsubmit='register(this);' method="post">
                 <label for="email">Email</label>
-                <input type="text" id="email" name="email" placeholder="Enter your email..." required>
+                <input type="email" id="email" name="email" placeholder="Enter your email..." required>
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" placeholder="Enter a secure password" minlength="8" required>
                 <input type="submit" id="submit" value="Sign Up">

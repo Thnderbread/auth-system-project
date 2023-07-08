@@ -19,8 +19,7 @@
                     body: JSON.stringify({ email, password })
                 });
                 if (response.ok) {
-                    window.location.replace('./index');
-                    accessToken = await response.json().then(result => result.accessToken);
+                    window.location.replace('/');
                 } else {
                     window.location.replace('./404');
                     throw new Error(`${response.status}: ${response.statusText}`);
@@ -31,16 +30,17 @@
             }
         };
     </script>
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="../public/styles.css">
+    <!-- <link rel="stylesheet" href="./styles.css"> -->
 </head>
 <body>
     <div class="center">
         <h1>Login</h1>
             <form onsubmit='login(this);' method="post">
                 <label for="email">Email</label>
-                <input type="text" id="email" name="email" placeholder="Enter your email..." required>
+                <input type="email" id="email" name="email" placeholder="Enter your email..." required>
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Enter a secure password" minlength="8" required>
+                <input type="password" id="password" name="password" placeholder="Password" minlength="8" required>
                 <input type="submit" id="submit" value="Login">
             </form>
     </div>
