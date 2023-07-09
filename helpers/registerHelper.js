@@ -21,7 +21,7 @@ async function registerUser(req, res) {
         });
         console.log(`User created with email ${email} and password ${hashedPassword}.`);
         // res.status(201).json({ "success": "User created successfully. Redirecting..." });
-        return res.redirect(201, '../views/login')
+        return res.redirect(201, '../views/index')
         // redirect user to homepage?
 
     } catch (error) {

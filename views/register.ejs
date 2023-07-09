@@ -22,7 +22,7 @@
                     throw new Error(`${response.status} ${response.statusText}`);
                     window.location.replace('./404');
                 }
-                window.location.replace('./login');
+                window.location.replace('./index');
             } catch (error) {
                 console.error(error); // error.stack prints more detailed information
                 window.location.replace('./404');
@@ -41,6 +41,7 @@
                 <input type="password" id="password" name="password" placeholder="Enter a secure password" minlength="8" required>
                 <input type="submit" id="submit" value="Sign Up">
             </form>
+            <button onclick="window.location.href='./index'">Login</button>
     </div>
 </body>
 </html>

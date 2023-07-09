@@ -1,9 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const verifyJWT = require('../middleware/verifyJWT');
+const userLogin = require('../helpers/authHelper');
 
-router.get('/', (req, res) => {
-    res.render('./index')
-});
+router.route('/')
+    .get((req, res) => {
+        res.render('./index');
+        res.end();
+    })
+    .post(userLogin);
 
 module.exports = router;

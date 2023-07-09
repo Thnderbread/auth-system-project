@@ -35,8 +35,8 @@ app.use(session({
 
 // routes
 app.use('/', require('./routes/index'));
+app.use('/homepage', require('./routes/homepage'));
 app.use('/register', require('./routes/register'));
-app.use('/login', require('./routes/login'));
 app.use('/forgot', require('./routes/forgot'));
 app.use('/reset', require('./routes/reset'));
 app.use('/refresh', require('./routes/refresh'));

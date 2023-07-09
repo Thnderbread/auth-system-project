@@ -78,7 +78,7 @@ input[type=email]:focus, input[type=password]:focus {
     outline: none;
 }
 
-input[type=submit] {
+input[type=submit], button {
     display: block;
     margin: 0 auto;
     width: 50%;
@@ -94,6 +94,12 @@ input[type=submit]:hover {
     cursor: pointer;
     background-color: rgb(11, 106, 27);
     transition: 0.2s;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: darkcyan;
+    transition: 0.2s
 }
 
 input:invalid {
