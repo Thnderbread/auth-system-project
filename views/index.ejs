@@ -4,40 +4,46 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
-    <link rel="stylesheet" href="./styles.css">
-    <!-- <script>
-        // function that refreshes access token before it expires.
-        // check for access token first? or automatically refresh?
-        setInterval(async function checkRefreshToken() {
-            // if access Token
-            const accessToken = sessionStorage.getItem('accessToken')
-            if (accessToken) {
-                ;
-            } else {
-            // if no access token
-                try {
-                    const response = fetch('./refresh', { // fetch request for new token
-                        method: 'GET',
-                        headers: {'Content-Type': 'application/json'},
-                        credentials: 'include'
-                    });
-                    if (!response.ok) { // if bad response. If we get a 401 response, we should redirect to login.
-                        throw new Error(`${response.status} ${response.statusText}`)
-                        window.location.replace('./404');
-                    }
-                    accessToken = await response.json().then(result => result.accessToken); 
-                    // parse response and get and set access token
-                } catch (error) {
-                    console.error(error); // error.stack prints more detailed information
+    <title>Login</title>
+    <script>
+        async function login(form) {
+            event.preventDefault(); //**
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+        
+            try {
+                const response = await fetch('./index', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    credentials: "include",
+                    body: JSON.stringify({ email, password })
+                });
+                if (response.ok) {
+                    window.location.replace('/');
+                } else {
                     window.location.replace('./404');
+                    throw new Error(`${response.status}: ${response.statusText}`);
                 }
-            };
-        }, 85_999_999)
-    </script> -->
+            } catch (error) {
+                console.error(error); // error.stack prints more detailed information
+                window.location.replace('./404');
+            }
+        };
+    </script>
+    <link rel="stylesheet" href="./styles.css">
+    <!-- <link rel="stylesheet" href="./styles.css"> -->
 </head>
 <body>
-    <p>If you made it here, everything works!</p>
-    <img src="./images/hooray.png" alt="HOORAY!">
+    <div class="center">
+        <h1>Login</h1>
+            <form onsubmit='login(this);' method="post">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email..." required>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Password" minlength="8" required>
+                <input type="submit" id="submit" value="Login">
+            </form>
+            <button onclick="window.location.href='./register'">Sign Up</button>
+    </div>
 </body>
 </html>
