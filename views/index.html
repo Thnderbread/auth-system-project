@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script>
+        async function login(form) {
+            event.preventDefault(); //**
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+        
+            try {
+                const response = await fetch('./', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    credentials: "include",
+                    body: JSON.stringify({ email, password })
+                });
+                if (response.ok) {
+                    window.location.replace('/homepage');
+                } else {
+                    window.location.replace('./404');
+                    throw new Error(`${response.status}: ${response.statusText}`);
+                }
+            } catch (error) {
+                console.error(error); // error.stack prints more detailed information
+                window.location.replace('./404');
+            }
+        };
+    </script>
+    <link rel="stylesheet" href="./styles.css">
+    <!-- <link rel="stylesheet" href="./styles.css"> -->
+</head>
+<body>
+    <div class="center">
+        <h1>Login</h1>
+            <form onsubmit='login(this);' method="post">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email..." required>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Password" minlength="8" required>
+                <input type="submit" id="submit" value="Login">
+            </form>
+            <button onclick="window.location.href='./register'">Sign Up</button>
+    </div>
+</body>
+</html>
